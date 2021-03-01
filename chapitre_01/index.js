@@ -28,9 +28,9 @@ app.get("/authors/:id", (req, res) => {
     }
 });
 
-app.get("*", (req, res) => {
-    res.send("Error")
-});
+// app.get("*", (req, res) => {
+//     res.send("Error")
+// });
 
 
 // 02 - Books
@@ -48,9 +48,8 @@ app.get("/authors/:id/books", (req, res) => {
 
 // 04 - JSON 
 
-const json = [
+const list = [
     {
-        id: 1,
         name: "Lawrence Nowell",
         nationality: "UK",
         books: [
@@ -58,7 +57,6 @@ const json = [
         ]
     },
     {
-        id: 2,
         name: "William Shakespeare",
         nationality: "UK",
         books: [
@@ -69,7 +67,6 @@ const json = [
         ]
     },
     {
-        id: 3,
         name: "Charles Dickens",
         nationality: "US",
         books: [
@@ -78,7 +75,6 @@ const json = [
         ]
     },
     {
-        id: 4,
         name: "Oscar Wilde",
         nationality: "UK",
         books: [
@@ -88,3 +84,17 @@ const json = [
     }
 ];
 
+app.get("/json/authors/:id", (req, res) => {
+    const newAuthors = {
+        name: list[req.params.id - 1].name,
+        nationality: list[req.params.id - 1].nationality
+    }
+    res.json(newAuthors);
+});
+
+app.get("/json/authors/:id/books", (req, res) => {
+    const newBooks = {
+        books: list[req.params.id - 1].books,
+    }
+    res.json(newBooks);
+});
