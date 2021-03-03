@@ -1,0 +1,10 @@
+h1 {
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    justify-content: center;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+}
