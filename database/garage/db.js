@@ -16,7 +16,7 @@ const carSchema = new mongoose.Schema({
     created: {
         type: Date,
         default: new Date()
-        // donne une date par défaut automatiquement
+        // soit on attribue une date, soit ça donne une date par défaut
     }
 });
 
@@ -29,6 +29,7 @@ const carModel = mongoose.model("cars", carSchema);
 
 // on met des accolades vides {} en paramètre de deleteMany() pour dire qu'on veut TOUT supprimer
 // ce qui se trouve entre les {} désigne ce qu'on veut supprimer, chercher
+
 carModel.deleteMany({}).then(() => {
     carModel.create([
         {
@@ -59,6 +60,7 @@ carModel.findById("6046343290d7c7266e9e1e60").then((response) => {
 // OU
 
 // on met ce que l'on veut chercher dans l'accolade {}
+
 carModel.find({
     _id: "6046343290d7c7266e9e1e60"
 }).then((response) => {
