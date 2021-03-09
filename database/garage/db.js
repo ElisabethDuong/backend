@@ -28,7 +28,7 @@ const carModel = mongoose.model("cars", carSchema);
 // CREATE
 
 // on met des accolades vides {} en paramètre de deleteMany() pour dire qu'on veut TOUT supprimer
-// ce qui se trouve entre les {} désigne ce qu'on veut supprimer, chercher
+// ce qui se trouve entre les {} désigne le(s) critère(s) qu'on veut supprimer, chercher
 
 carModel.deleteMany({}).then(() => {
     carModel.create([
