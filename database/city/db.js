@@ -113,13 +113,79 @@ mongoose.connect(
 const citySchema = new mongoose.Schema({
     _id: Number,
     department: Number,
-    city: String,
+    city: { type: String, index: true },
     population: Number
 });
 
 const cityModel = mongoose.model("cities", citySchema);
 
-cityModel.deleteMany({}).then(() => {
-    cityModel.create(cities)
-});
+// cityModel.deleteMany({}).then(() => {
+//     cityModel.create(cities)
+// });
 
+
+// SUM
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: { department: "$department" },
+//         count: { $sum: "$population" }
+//     })
+//     .then((response) => console.log(response));
+
+
+// AVERAGE
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: { department: "$department" },
+//         average: { $avg: "$population" }
+//     })
+//     .then((response) => console.log(response));
+
+
+// SORT BY CRITERIA
+
+cityModel
+    .aggregate()
+    .group({
+        _id: { department: "$department" },
+        count: { $sum: "$population" }
+    })
+    .sort({ count: 1 })
+    .then((response) => console.log(response));
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: { department: "$department" },
+//         average: { $avg: "$population" }
+//     })
+//     .sort({ average: -1 })
+//     .then((response) => console.log(response));
+
+
+// SUM ELEMENTS AFTER GROUPING
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: { department: "$department" },
+//         count: { $sum: 1 } // on ajoute 1 pour chaque ville
+//     })
+//     .then((response) => console.log(response));
+
+
+// MATCH (FILTER), GROUP, SUM
+
+// cityModel
+//     .aggregate()
+//     .match({ city: /^P/ }) 
+        // ^ : commence par, /^P/ par un P majuscule, /^p/i : par un p majuscule ou minuscule (i : case insensitive, ne dépend pas des majuscules ou minuscules)
+//     .group({
+//         _id: { department: "$department" },
+//         count: { $sum: 1 }
+//     })
+//     .then((response) => console.log(response));
