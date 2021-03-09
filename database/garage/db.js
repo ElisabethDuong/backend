@@ -53,9 +53,7 @@ carModel.deleteMany({}).then(() => {
 
 // FIND
 
-carModel.findById("6046343290d7c7266e9e1e60").then((response) => {
-    console.log(response)
-});
+carModel.findById("6046343290d7c7266e9e1e60").then((response) => console.log(response));
 
 // OU
 
@@ -63,9 +61,7 @@ carModel.findById("6046343290d7c7266e9e1e60").then((response) => {
 
 carModel.find({
     _id: "6046343290d7c7266e9e1e60"
-}).then((response) => {
-    console.log(response)
-});
+}).then((response) => console.log(response));
 
 
 // UPDATE
@@ -77,18 +73,14 @@ carModel.updateOne(
     {
         year: 2000
     }
-).then((response) => {
-    console.log(response)
-});
+).then((response) => console.log(response));
 
 
 // DELETE
 
 carModel.deleteMany({
     brand: "Renault"
-}).then((response) => {
-    console.log(response)
-});
+}).then((response) => console.log(response));
 
 
 // INSERT
@@ -115,9 +107,7 @@ carModel.find({
         $gt: 2015
     }
 }
-).then((response) => {
-    console.log(response)
-});
+).then((response) => console.log(response));
 
 
 // FIND WITH REGEX
@@ -125,8 +115,6 @@ carModel.find({
 carModel.find({
     model: /o/
 }
-).then((response) => {
-    console.log(response)
-});
+).then((response) => console.log(response));
 
 */
