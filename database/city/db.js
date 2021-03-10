@@ -119,73 +119,120 @@ const citySchema = new mongoose.Schema({
 
 const cityModel = mongoose.model("cities", citySchema);
 
+
+
+// // CREATE
+
 // cityModel.deleteMany({}).then(() => {
 //     cityModel.create(cities)
 // });
 
 
-// SUM
+// // SUM
 
 // cityModel
 //     .aggregate()
 //     .group({
-//         _id: { department: "$department" },
-//         count: { $sum: "$population" }
+//         _id: "$department",
+//         totalPopulation: {
+//             $sum: "$population"
+//         }
 //     })
 //     .then((response) => console.log(response));
 
 
-// AVERAGE
+// // AVERAGE
 
 // cityModel
 //     .aggregate()
 //     .group({
-//         _id: { department: "$department" },
-//         average: { $avg: "$population" }
+//         _id: "$department",
+//         averagePopulation: {
+//             $avg: "$population"
+//         }
 //     })
 //     .then((response) => console.log(response));
 
 
-// SORT BY CRITERIA
+// // SORT BY CRITERIA
 
-cityModel
-    .aggregate()
-    .group({
-        _id: { department: "$department" },
-        count: { $sum: "$population" }
-    })
-    .sort({ count: 1 })
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: "$department",
+//         totalPopulation: {
+//             $sum: "$population"
+//         }
+//     })
+//     .sort({ 
+//         totalPopulation: 1 
+//     }) // .sort({ qqch: 1 (ordre croissant) ou -1 (ordre décroissant)})
+//     .then((response) => console.log(response));
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: "$department",
+//         averagePopulation: {
+//             $avg: "$population"
+//         }
+//     })
+//     .sort({ 
+//         averagePopulation: -1 
+//     })
+//     .then((response) => console.log(response));
+
+
+// // SUM ELEMENTS AFTER GROUPING
+
+// cityModel
+//     .aggregate()
+//     .group({
+//         _id: "$department",
+//         citiesByDepartment: {
+//             $sum: 1
+//         } // on ajoute 1 pour chaque ville
+//     })
+//     .then((response) => console.log(response));
+
+
+// // MATCH (FILTER), GROUP, SUM
+
+// cityModel
+//     .aggregate()
+//     .match({ 
+//         city: /^P/ 
+//     }) // ^ : commence par, /^P/ par un P majuscule, /^p/i : par un p majuscule ou minuscule (i : case insensitive, ne dépend pas des majuscules ou minuscules)
+//     .group({
+//         _id: "$department",
+//         cityNameStartingByP: {
+//             $sum: 1
+//         }
+//     })
+//     .then((response) => console.log(response));
+
+//     cityModel
+//     .aggregate()
+//     .match({ 
+//         city: /^p/i 
+//     })
+//     .group({
+//         _id: "$department",
+//         totalPopulation: {
+//             $sum: "$population"
+//         },
+//         averagePopulation: {
+//             $avg: "$population"
+//         },
+//         citiesByDepartment: {
+//             $sum: 1
+//         },
+//         cityNameStartingByP: {
+//             $sum: 1
+//         }
+//     })
+//     .sort({ 
+//         totalPopulation: 1,
+//         averagePopulation: -1 
+//     })
     .then((response) => console.log(response));
-
-// cityModel
-//     .aggregate()
-//     .group({
-//         _id: { department: "$department" },
-//         average: { $avg: "$population" }
-//     })
-//     .sort({ average: -1 })
-//     .then((response) => console.log(response));
-
-
-// SUM ELEMENTS AFTER GROUPING
-
-// cityModel
-//     .aggregate()
-//     .group({
-//         _id: { department: "$department" },
-//         count: { $sum: 1 } // on ajoute 1 pour chaque ville
-//     })
-//     .then((response) => console.log(response));
-
-
-// MATCH (FILTER), GROUP, SUM
-
-// cityModel
-//     .aggregate()
-//     .match({ city: /^P/ }) 
-        // ^ : commence par, /^P/ par un P majuscule, /^p/i : par un p majuscule ou minuscule (i : case insensitive, ne dépend pas des majuscules ou minuscules)
-//     .group({
-//         _id: { department: "$department" },
-//         count: { $sum: 1 }
-//     })
-//     .then((response) => console.log(response));
